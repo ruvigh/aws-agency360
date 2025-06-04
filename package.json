@@ -9,19 +9,28 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@cloudscape-design/board-components": "^3.0.104",
+    "@cloudscape-design/chat-components": "^1.0.47",
+    "@cloudscape-design/code-view": "^3.0.58",
+    "@cloudscape-design/collection-hooks": "^1.0.73",
+    "@cloudscape-design/components": "^3.0.982",
+    "@cloudscape-design/design-tokens": "^3.0.57",
+    "@cloudscape-design/global-styles": "^1.0.44",
+    "@cloudscape-design/test-utils-core": "^1.0.59",
+    "@heroicons/react": "^2.2.0",
+    "next": "15.3.3",
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "next": "15.3.3"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
-    "typescript": "^5",
+    "@eslint/eslintrc": "^3",
+    "@tailwindcss/postcss": "^4",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
-    "@tailwindcss/postcss": "^4",
-    "tailwindcss": "^4",
     "eslint": "^9",
     "eslint-config-next": "15.3.3",
-    "@eslint/eslintrc": "^3"
+    "tailwindcss": "^4",
+    "typescript": "^5"
   }
 }

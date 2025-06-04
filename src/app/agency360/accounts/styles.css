@@ -1,0 +1,38 @@
+.awsui_row_wih1l_1x3lp_360 {
+  cursor: pointer !important;
+}
+
+.awsui_row_wih1l_1x3lp_360:hover {
+  /* background-color: #f2f8fd !important; */
+  color:var(--color-text-interactive-active-fedaa8, #0f141a);
+  /* font-weight: var(--font-weight-heading-s-lcx0ai, 700); */
+  background-color: #ffffff11 !important;
+}
+
+/* Modal styling to position at top */
+.top-modal{
+  margin-top: 0 !important;
+  top: 50px !important;
+}
+
+[class*="awsui_dismiss-control"] {
+  display: none !important;
+}
+
+.skeleton-text {
+  height: 20px;
+  width: 100%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 4px;
+}
+
+.skeleton-checkbox {
+  height: 100%;
+  width: 100%;
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 3px;
+}
