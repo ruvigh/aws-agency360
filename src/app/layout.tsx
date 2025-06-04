@@ -10,19 +10,14 @@ import BreadcrumbGroup from "@cloudscape-design/components/breadcrumb-group";
 import { usePathname } from "next/navigation";
 import { Container, ContentLayout, Header, HelpPanel, Link } from "@cloudscape-design/components";
 
-/* export const metadata: Metadata = {
-  title: "AWS Agency360",
-  description: "AWS Agency360 Application",
-}; */
+import Head from "next/head";
+
 
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const [darkMode, setDarkMode] = useState(false);
-  const [mounted, setMounted]   = useState(false);
-  const [loading, setLoading]   = useState(true);
   const pathname                = usePathname();
 
   // Generate breadcrumbs based on current path
@@ -50,9 +45,18 @@ export default function RootLayout({
   const customerLogo = process.env.NEXT_PUBLIC_CUSTOMER_LOGO || defaultLogo;
   const customerName = process.env.NEXT_PUBLIC_CUSTOMER_NAME || defaultAlt;
 
+  useEffect(() => {
+    document.title = `${customerName || 'AWS'} - Agency360`;
+    
+  }, [customerName, customerLogo]);
 
   return (
     <html lang="en">
+      <head>
+        <title>Agency360</title>
+        <link rel="icon" href="/images/favicon.png" />
+        <meta name="description" content="Amazon Web Services - Public Sector - Demo Applications" />
+      </head>
       <body>
         <AppLayout
         

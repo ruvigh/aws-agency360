@@ -261,7 +261,7 @@ export default function ProductsPage() {
     try {
       if (isEditMode && selectedProduct) {
         // Update existing product
-        const response = await fetch(`${API}/${selectedProduct.id}`, {
+        const response = await fetch(`${API}/products/${selectedProduct.id}`, {
           method: 'PUT',
           headers: {
             'Content-Type': 'application/json',
