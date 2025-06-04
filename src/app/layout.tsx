@@ -47,21 +47,25 @@ export default function RootLayout({
 
   const defaultLogo = "/images/aws_logo.png";
   const defaultAlt = "Amazon Web Services";
+  const customerLogo = process.env.NEXT_PUBLIC_CUSTOMER_LOGO || defaultLogo;
+  const customerName = process.env.NEXT_PUBLIC_CUSTOMER_NAME || defaultAlt;
+
 
   return (
     <html lang="en">
       <body>
         <AppLayout
+        
           breadcrumbs={<BreadcrumbGroup items={getBreadcrumbs()} />}
           navigation={
             <SideNavigation
               
               header={{
                 href: "/",
-                text: "Ministry of Education",
+                text: customerName,
                 logo: {
-                    src: process.env.NEXT_PUBLIC_CUSTOMER_LOGO || defaultLogo,
-                    alt: process.env.NEXT_PUBLIC_CUSTOMER_NAME || defaultAlt
+                    src: customerLogo,
+                    alt: customerName
                   }
               }}
               items={[
@@ -104,8 +108,6 @@ export default function RootLayout({
             />
           }
           /* content={children}, */
-          toolsOpen={false}
-          tools={<HelpPanel header={<h2>Overview</h2>}>Help content</HelpPanel>}
           content={
             <ContentLayout>
               <div className="contentPlaceholder" >
