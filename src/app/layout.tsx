@@ -45,9 +45,8 @@ export default function RootLayout({
     return items;
   };
 
-  const defaultLogo = "https://upload.wikimedia.org/wikipedia/en/thumb/2/28/Ministry_of_Education_%28Singapore%29_logo.svg/640px-Ministry_of_Education_%28Singapore%29_logo.svg.png";
-
-  const logo_url = defaultLogo
+  const defaultLogo = "/images/aws_logo.png";
+  const defaultAlt = "Amazon Web Services";
 
   return (
     <html lang="en">
@@ -61,8 +60,8 @@ export default function RootLayout({
                 href: "/",
                 text: "Ministry of Education",
                 logo: {
-                    src: logo_url,
-                    alt: "AWS Logo"
+                    src: process.env.NEXT_PUBLIC_CUSTOMER_LOGO || defaultLogo,
+                    alt: process.env.NEXT_PUBLIC_CUSTOMER_NAME || defaultAlt
                   }
               }}
               items={[
