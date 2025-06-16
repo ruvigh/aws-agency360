@@ -99,12 +99,17 @@ export default function RootLayout({
                     {
                       type: "link",
                       text: "AwSistant",
-                      href: "/agency360/accounts"
+                      href: "/agency360/chat"
                     },
                     {
                       type: "link", 
                       text: "Principal",
                       href: "/agency360/products"
+                    },
+                    {
+                      type: "link", 
+                      text: "Chat Assistant",
+                      href: "/agency360/chat"
                     }
                   ]
                 }
