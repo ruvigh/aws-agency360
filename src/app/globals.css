@@ -46,3 +46,7 @@ body {
   animation: shimmer 1.5s infinite;
   border-radius: 3px;
 }
+
+.border-none{
+  border: 0px !important;
+}

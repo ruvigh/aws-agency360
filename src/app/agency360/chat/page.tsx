@@ -9,6 +9,7 @@ import {
   Box,
   Spinner,
   Table,
+  ContentLayout,
 } from "@cloudscape-design/components";
 import ChatBubble from "@cloudscape-design/chat-components/chat-bubble";
 import Avatar from "@cloudscape-design/chat-components/avatar";
@@ -61,7 +62,7 @@ export default function ChatPage() {
       }
 
       const data = await response.json();
-      
+
       // Add AI response to chat
       const aiMessage: Message = {
         content: data.results || data,
@@ -111,7 +112,7 @@ export default function ChatPage() {
         />
       );
     }
-    
+
     // If it's a single object
     const items = Object.entries(content).map(([key, value]) => ({
       key,
@@ -133,79 +134,105 @@ export default function ChatPage() {
   };
 
   return (
-    <Container>
-      <Header variant="h1">Chat Assistant</Header>
-      <SpaceBetween size="l">
-        <div style={{ height: "500px", overflowY: "auto", padding: "16px", display: "flex", flexDirection: "column", gap: "16px" }}>
-          {messages.length === 0 ? (
-            <Box textAlign="center" color="text-body-secondary" padding="l">
-              Start a conversation by typing a message below.
-            </Box>
-          ) : (
-            <>
-              {messages.map((message, index) => (
-                <ChatBubble
-                  key={index}
-                  type={message.isUser ? "outgoing" : "incoming"}
-                  ariaLabel={`${message.isUser ? "You" : "AwSistant"} at ${formatTime(message.timestamp)}`}
-                  avatar={
-                    <Avatar
-                      ariaLabel={message.isUser ? "You" : "AwSistant"}
-                      tooltipText={message.isUser ? "You" : "AwSistant"}
-                      initials={message.isUser ? "YO" : "AW"}
-                    />
-                  }
-                >
-                  {message.isJson && !message.isUser
-                    ? renderJsonAsTable(message.content)
-                    : String(message.content)}
-                </ChatBubble>
-              ))}
-              {isLoading && (
-                <ChatBubble
-                  key="isTyping"
-                  type="incoming"
-                  ariaLabel="AwSistant typing"
-                  showLoadingBar
-                  avatar={
-                    <Avatar
-                      ariaLabel="AwSistant"
-                      tooltipText="AwSistant"
-                      initials="AW"
-                    />
-                  }
-                >
-                  AwSistant is Typing...
-                </ChatBubble>
-              )}
-              <div ref={messagesEndRef} />
-            </>
-          )}
-        </div>
-        <div style={{ display: "flex", gap: "8px" }}>
-          <div style={{ flex: 1 }}>
+
+    <Container
+      className="border-none"
+      variant="default"
+      disableContentPaddings
+      disableHeaderPaddings
+      header={
+        <SpaceBetween size="m">
+          <Header variant="h1" description="Chat Assistant">
+            Chat Assistant
+          </Header>
+        </SpaceBetween>
+      }
+      footer={
+        <div className="flex gap-3">
+          <div className="grow">
             <Textarea
-              value={inputValue}
-              onChange={({ detail }) => setInputValue(detail.value)}
-              placeholder="Type your message here..."
-              rows={3}
-              onKeyDown={(e: any) => {
-                if (e.key === "Enter" && !e.shiftKey) {
-                  e.preventDefault();
-                  handleSendMessage();
-                }
-              }}
-            />
+                value={inputValue}
+                onChange={({ detail }) => setInputValue(detail.value)}
+                placeholder="Type your message here..."
+                rows={3}
+                onKeyDown={(e: any) => {
+                  if (e.key === "Enter" && !e.shiftKey) {
+                    e.preventDefault();
+                    handleSendMessage();
+                  }
+                }}
+              />
           </div>
-          <Button
-            variant="primary"
-            onClick={handleSendMessage}
-            disabled={!inputValue.trim() || isLoading}
-          >
-            Send
-          </Button>
+          <div className="flex-none">
+            <Button
+              fullWidth
+              
+              variant="primary"
+              onClick={handleSendMessage}
+              disabled={!inputValue.trim() || isLoading}
+            >
+              Send
+            </Button>
+          </div>
         </div>
-      </SpaceBetween>
-    </Container>
+      }
+      >
+        
+        <SpaceBetween size="l">
+
+          <div  style={{ height: "75vh", overflowY: "auto", padding: "", display: "flex", flexDirection: "column", gap: "" }}>
+            {messages.length === 0 ? (
+              <Box textAlign="center" color="text-body-secondary" padding="l">
+                Start a conversation by typing a message below.
+              </Box>
+            ) : (
+              <>
+                {messages.map((message, index) => (
+                  <ChatBubble
+                    key={index}
+                    type={message.isUser ? "outgoing" : "incoming"}
+                    ariaLabel={`${message.isUser ? "You" : "AwSistant"} at ${formatTime(message.timestamp)}`}
+                    avatar={
+                      <Avatar
+                        ariaLabel={message.isUser ? "You" : "AwSistant"}
+                        tooltipText={message.isUser ? "You" : "AwSistant"}
+                        initials={message.isUser ? "VM" : "AW"}
+                        imgUrl={message.isUser ? "" : "/images/favicon.png"}
+                        width={15}
+                      />
+                    }
+                  >
+                    {message.isJson && !message.isUser
+                      ? renderJsonAsTable(message.content)
+                      : String(message.content)}
+                  </ChatBubble>
+                ))}
+                {isLoading && (
+                  <ChatBubble
+                    key="isTyping"
+                    type="incoming"
+                    ariaLabel="AwSistant typing"
+                    showLoadingBar
+                    avatar={
+                      <Avatar
+                        ariaLabel="AwSistant"
+                        imgUrl="/images/aws_logo.png"
+                        tooltipText="AwSistant"
+                        width={40}
+                        initials="AW"
+                      />
+                    }
+                  >
+                    AwSistant is Typing...
+                  </ChatBubble>
+                )}
+                <div ref={messagesEndRef} />
+              </>
+            )}
+          </div>
+          
+        </SpaceBetween>
+      </Container>
+
   );
 }
